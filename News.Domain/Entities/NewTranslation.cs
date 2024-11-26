@@ -8,18 +8,18 @@ using System.Threading.Tasks;
 
 namespace News.Domain.Entities
 {
-    public class NewsTranslation
+    public class NewTranslation
     {
         [Key]
         public int TranslationId { get; set; }
-        [ForeignKey("News")]
-        public int NewsId { get; set; }
+        [ForeignKey("New")]
+        public int NewId { get; set; }
         [ForeignKey("Language")]
         public string LanguageCode { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
-        public News News { get; set; }
-        public Language Language { get; set; }
+        public New New { get; set; }
+        public Languages Language { get; set; }
 
     }
 }

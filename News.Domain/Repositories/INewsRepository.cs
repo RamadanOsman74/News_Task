@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace News.Domain.Repositories
 {
-    public interface INewsRepository: IGenericRepository<Entities.News>
+    public interface INewsRepository: IGenericRepository<New>
     {
-        void Update(Entities.News news);
+        void Update(New news);
 
     }
 }

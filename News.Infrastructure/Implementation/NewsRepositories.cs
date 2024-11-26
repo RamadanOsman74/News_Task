@@ -10,20 +10,20 @@ using System.Threading.Tasks;
 
 namespace News.Infrastructure.Implementation
 {
-    public class NewsRepositories : GenericRepository<Domain.Entities.News>,INewsRepository
+    public class NewRepositories : GenericRepository<New>,INewsRepository
     {
         private NewsDbContext _dbContext;
-        public NewsRepositories(NewsDbContext newsDbContext) : base(newsDbContext)
+        public NewRepositories(NewsDbContext newsDbContext) : base(newsDbContext)
         {
             _dbContext = newsDbContext;
         }
 
-        public void Update(Domain.Entities.News news)
+        public void Update(New news)
         {
             var newsInDb = _dbContext.News
                 .Include(n => n.Translations)
                 .Include(n => n.Image)
-                .FirstOrDefault(s => s.NewsId == news.NewsId);
+                .FirstOrDefault(s => s.NewId == news.NewId);
 
             if (newsInDb != null)
             {

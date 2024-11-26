@@ -13,6 +13,6 @@ namespace News.Domain.Entities
         [Key]
         public string LanguageCode { get; set; }
         public string LanguageName { get; set; }
-        public ICollection<NewsTranslation> NewsTranslations { get; set; }
+        public ICollection<NewTranslation> NewTranslations { get; set; }
     }
 }

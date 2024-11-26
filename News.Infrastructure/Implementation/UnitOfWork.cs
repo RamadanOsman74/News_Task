@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace News.Infrastructure.Implementation
 {
-    internal class UnitOfWork : IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private NewsDbContext _dbContext;
         public INewsRepository News { get; private set; }
@@ -16,7 +16,7 @@ namespace News.Infrastructure.Implementation
         public UnitOfWork(NewsDbContext newsDbContext) 
         {
             _dbContext = newsDbContext;
-            News = new NewsRepositories(newsDbContext);
+            News = new NewRepositories(newsDbContext);
         }
 
         public int Complete()

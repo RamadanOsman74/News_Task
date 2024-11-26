@@ -12,9 +12,9 @@ namespace News.Domain.Entities
     {
         [Key]
         public int ImageId { get; set; } 
-        [ForeignKey("News")]
+        [ForeignKey("New")]
         public int NewsId { get; set; } 
         public string ImagePath { get; set; }
-        public News News { get; set; }
+        public New New { get; set; }
     }
 }
