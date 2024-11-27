@@ -14,8 +14,8 @@ namespace News.Domain.Entities
         public int TranslationId { get; set; }
         [ForeignKey("New")]
         public int NewId { get; set; }
-        [ForeignKey("Language")]
-        public string LanguageCode { get; set; }
+        //[ForeignKey("Language")]
+        //public string LanguageCode { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
         public New New { get; set; }

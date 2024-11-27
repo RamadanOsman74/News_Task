@@ -23,7 +23,7 @@ namespace News.Infrastructure.Implementation
         {
             _dbSet.Add(entity); 
         }
-        public IEnumerable<T> GetAll(Func<IQueryable<T>, IQueryable<T>> include = null)
+        public IEnumerable<T> GetAll(Func<IQueryable<T>, IQueryable<T>>? include = null)
         {
             IQueryable<T> query = _dbSet;
 
@@ -35,7 +35,7 @@ namespace News.Infrastructure.Implementation
             return query.ToList();
         }
 
-        public T Get(int id, Func<IQueryable<T>, IQueryable<T>> include = null)
+        public T Get(int id, Func<IQueryable<T>, IQueryable<T>>? include = null)
         {
             IQueryable<T> query = _dbSet;
 
@@ -43,10 +43,12 @@ namespace News.Infrastructure.Implementation
             {
                 query = include(query);
             }
-            return query.FirstOrDefault(e => EF.Property<int>(e, "Id") == id);
+
+            return query.FirstOrDefault(e => EF.Property<int>(e, "NewId") == id); 
         }
 
-            public void Remove(T entity)
+
+        public void Remove(T entity)
             {
                 _dbSet.Remove(entity);
             }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using News.Infrastructure.Data;
 
@@ -11,9 +12,11 @@ using News.Infrastructure.Data;
 namespace News.Infrastructure.Migrations
 {
     [DbContext(typeof(NewsDbContext))]
-    partial class NewsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241126225622_editInTranslaion")]
+    partial class editInTranslaion
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,6 +45,20 @@ namespace News.Infrastructure.Migrations
                     b.HasIndex("NewsId");
 
                     b.ToTable("images");
+                });
+
+            modelBuilder.Entity("News.Domain.Entities.Language", b =>
+                {
+                    b.Property<string>("LanguageCode")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("LanguageName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("LanguageCode");
+
+                    b.ToTable("languages");
                 });
 
             modelBuilder.Entity("News.Domain.Entities.New", b =>
@@ -89,6 +106,13 @@ namespace News.Infrastructure.Migrations
                     b.Property<int>("Language")
                         .HasColumnType("int");
 
+                    b.Property<string>("LanguageCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LanguageCode1")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<int>("NewId")
                         .HasColumnType("int");
 
@@ -97,6 +121,8 @@ namespace News.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("TranslationId");
+
+                    b.HasIndex("LanguageCode1");
 
                     b.HasIndex("NewId");
 
@@ -116,6 +142,10 @@ namespace News.Infrastructure.Migrations
 
             modelBuilder.Entity("News.Domain.Entities.NewTranslation", b =>
                 {
+                    b.HasOne("News.Domain.Entities.Language", null)
+                        .WithMany("NewTranslations")
+                        .HasForeignKey("LanguageCode1");
+
                     b.HasOne("News.Domain.Entities.New", "New")
                         .WithMany("Translations")
                         .HasForeignKey("NewId")
@@ -123,6 +153,11 @@ namespace News.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("New");
+                });
+
+            modelBuilder.Entity("News.Domain.Entities.Language", b =>
+                {
+                    b.Navigation("NewTranslations");
                 });
 
             modelBuilder.Entity("News.Domain.Entities.New", b =>

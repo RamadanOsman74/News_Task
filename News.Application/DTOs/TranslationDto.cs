@@ -11,5 +11,6 @@ namespace News.Application.DTOs
         public string Language { get; set; } // Arabic, English, French
         public string Title { get; set; }
         public string Content { get; set; }
+
     }
 }

@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace News.Infrastructure.Data
 {
-    public class NewsDbContext:DbContext
+    public class NewsDbContext : DbContext
     {
 
         public NewsDbContext(DbContextOptions<NewsDbContext> options) : base(options) { }
 
         public DbSet<New> News { get; set; }
-        public DbSet<Language> languages { get; set; }
         public DbSet<NewTranslation> newsTranslations { get; set; }
         public DbSet<Images> images { get; set; }
+
     }
 }

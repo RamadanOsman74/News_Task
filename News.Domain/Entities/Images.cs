@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace News.Domain.Entities
@@ -15,6 +16,7 @@ namespace News.Domain.Entities
         [ForeignKey("New")]
         public int NewsId { get; set; } 
         public string ImagePath { get; set; }
+        [JsonIgnore]
         public New New { get; set; }
     }
 }
